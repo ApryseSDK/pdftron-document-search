@@ -4,10 +4,8 @@ import { Router, navigate } from '@reach/router';
 import {
   Box,
   Button,
-  Toast,
   Container,
   Text,
-  TextField,
   Heading,
 } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
