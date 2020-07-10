@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Profile from './components/Profile/Profile';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
+import Search from './components/Search/Search';
 import PasswordReset from './components/PasswordReset/PasswordReset';
 
 
@@ -28,7 +29,11 @@ const App = () => {
   }, [auth]);
 
   return user ? (
-    <Profile />
+    <Router>
+      <Profile path="/profile"/>
+      <Search path="/"/>
+    </Router>
+    
   ) : (
     <Router>
       <SignIn path="/" />
