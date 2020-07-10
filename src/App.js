@@ -6,6 +6,7 @@ import Profile from './components/Profile/Profile';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import Search from './components/Search/Search';
+import Navigate from './components/Navigate/Navigate';
 import PasswordReset from './components/PasswordReset/PasswordReset';
 
 
@@ -30,10 +31,10 @@ const App = () => {
 
   return user ? (
     <Router>
+      <Navigate path="/" />
       <Profile path="/profile"/>
-      <Search path="/"/>
+      <Search path="/search"/>
     </Router>
-    
   ) : (
     <Router>
       <SignIn path="/" />
