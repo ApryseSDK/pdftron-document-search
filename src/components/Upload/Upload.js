@@ -1,11 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from '@reach/router';
-import { auth, signInWithGoogle } from '../../Firebase/firebase';
+import { storage } from '../../Firebase/firebase';
+import { selectUser } from '../../Firebase/firebaseSlice';
 import { Box, Button, Container, Heading } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 
 const Upload = () => {
   const filePicker = useRef(null);
+  const user = useSelector(selectUser);
+
+  const { uid, email } = user;
 
   useEffect(() => {
     // listener for the file picker
@@ -16,6 +21,14 @@ const Upload = () => {
         const CoreControls = window.CoreControls;
         CoreControls.setWorkerPath('/webviewer');
         const doc = await CoreControls.createDocument(file);
+
+        // upload document to Firebase Storage
+        const storageRef = storage.ref();
+        const referenceString = `documents/${uid}-${file.name}-${Date.now()}.${file.type}`;
+        const docRef = storageRef.child(referenceString);
+        docRef.put(file).then(function (snapshot) {
+          console.log('Uploaded the blob');
+        });
 
         // iterate over all pages available and extract text
         let i;
