@@ -55,3 +55,27 @@ const getUserDocument = async uid => {
     console.error("Error fetching user", error);
   }
 };
+
+export const addDocumentToSign = async (uid, email, docRef, emails) => {
+  if (!uid) return;
+  const signed = false;
+  const xfdf = [];
+  const signedBy = [];
+  firestore
+    .collection('documentsToSign')
+    .add({
+      uid,
+      email,
+      docRef,
+      emails,
+      xfdf,
+      signedBy,
+      signed,
+    })
+    .then(function (docRef) {
+      console.log('Document written with ID: ', docRef.id);
+    })
+    .catch(function (error) {
+      console.error('Error adding document: ', error);
+    });
+};
