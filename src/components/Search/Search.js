@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch,
   SearchBox,
-  Hits,
   connectHits,
   RefinementList,
 } from 'react-instantsearch-dom';
@@ -13,13 +12,15 @@ import 'gestalt/dist/gestalt.css';
 import './Search.css';
 
 const Search = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
   const searchClient = algoliasearch(
     process.env.REACT_APP_ALGOLIA_APP_ID,
     process.env.REACT_APP_ALGOLIA_SEARCH_KEY,
   );
 
   const setDocToView = (docRef, pageNumber) => {
-    console.log(docRef, pageNumber);
+    console.log(docRef, pageNumber, searchTerm);
   };
 
   const Hit = hit => {
@@ -76,6 +77,9 @@ const Search = () => {
           <InstantSearch
             indexName={process.env.REACT_APP_ALGOLIA_INDEX_NAME}
             searchClient={searchClient}
+            onSearchStateChange={searchState => {
+              setSearchTerm(searchState.query);
+            }}
           >
             <SearchBox />
             <CustomHits />
