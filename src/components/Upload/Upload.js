@@ -4,13 +4,21 @@ import { Link } from '@reach/router';
 import { storage } from '../../Firebase/firebase';
 import { selectUser } from '../../Firebase/firebaseSlice';
 import { Box, Button, Container, Heading } from 'gestalt';
+import algoliasearch from 'algoliasearch';
 import 'gestalt/dist/gestalt.css';
 
 const Upload = () => {
   const filePicker = useRef(null);
   const user = useSelector(selectUser);
 
-  const { uid, email } = user;
+  // initialize algolia
+  const client = algoliasearch(
+    process.env.REACT_APP_ALGOLIA_APP_ID,
+    process.env.REACT_APP_ALGOLIA_API_KEY,
+  );
+  const index = client.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
+
+  const { uid } = user;
 
   useEffect(() => {
     // listener for the file picker
@@ -24,19 +32,27 @@ const Upload = () => {
 
         // upload document to Firebase Storage
         const storageRef = storage.ref();
-        const referenceString = `documents/${uid}-${file.name}-${Date.now()}.${file.type}`;
+        const referenceString = `documents/${uid}-${Date.now()}-${file.name}`;
         const docRef = storageRef.child(referenceString);
         docRef.put(file).then(function (snapshot) {
-          console.log('Uploaded the blob');
+          console.log('Uploaded the file');
         });
 
         // iterate over all pages available and extract text
         let i;
+        let text_data = [];
         for (i = 0; i < doc.getPageCount(); i++) {
-          doc.loadPageText(i, text => {
-            console.log(text);
+          doc.loadPageText(i, (text, i) => {
+            console.log(text, i);
+            text_data.push({
+              docRef: docRef,
+              docName: file.name,
+              pageNumber: i,
+              text: text,
+            });
           });
         }
+        console.log(JSON.stringify(text_data));
       }
     };
   }, []);
