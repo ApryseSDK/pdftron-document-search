@@ -7,7 +7,8 @@ import {
   connectHits,
   RefinementList,
 } from 'react-instantsearch-dom';
-import { Box, Container, Heading, Table, Text } from 'gestalt';
+import { navigate } from '@reach/router';
+import { Box, Container, Button, Heading, Table, Text } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 import './Search.css';
 
@@ -17,9 +18,13 @@ const Search = () => {
     process.env.REACT_APP_ALGOLIA_SEARCH_KEY,
   );
 
+  const setDocToView = (docRef, pageNumber) => {
+    console.log(docRef, pageNumber);
+  };
+
   const Hit = hit => {
     return (
-      <Table.Row>
+      <Table.Row key={hit.objectID}>
         <Table.Cell>
           <Text>{hit.title}</Text>
         </Table.Cell>
@@ -27,7 +32,15 @@ const Search = () => {
           <Text>{hit.pageText}</Text>
         </Table.Cell>
         <Table.Cell>
-          <Text>June 25, 1993</Text>
+          <Button
+            onClick={event => {
+              setDocToView(hit.docRef, hit.pageNumber);
+              navigate(`/view`);
+            }}
+            text="View"
+            color="blue"
+            inline
+          />
         </Table.Cell>
       </Table.Row>
     );
