@@ -4,16 +4,54 @@ import {
   InstantSearch,
   SearchBox,
   Hits,
+  connectHits,
   RefinementList,
 } from 'react-instantsearch-dom';
-import { Box, Container, Heading } from 'gestalt';
+import { Box, Container, Heading, Table, Text } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
+import './Search.css';
 
 const Search = () => {
   const searchClient = algoliasearch(
     process.env.REACT_APP_ALGOLIA_APP_ID,
     process.env.REACT_APP_ALGOLIA_SEARCH_KEY,
   );
+
+  const Hit = hit => {
+    return (
+      <Table.Row>
+        <Table.Cell>
+          <Text>{hit.title}</Text>
+        </Table.Cell>
+        <Table.Cell>
+          <Text>{hit.pageText}</Text>
+        </Table.Cell>
+        <Table.Cell>
+          <Text>June 25, 1993</Text>
+        </Table.Cell>
+      </Table.Row>
+    );
+  };
+
+  const Hits = ({ hits }) => {
+    return (
+      <Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>
+              <Text weight="bold">Title</Text>
+            </Table.HeaderCell>
+            <Table.HeaderCell>
+              <Text weight="bold">Page Text</Text>
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>{hits.map(Hit)}</Table.Body>
+      </Table>
+    );
+  };
+
+  const CustomHits = connectHits(Hits);
 
   return (
     <Box padding={3}>
@@ -27,7 +65,7 @@ const Search = () => {
             searchClient={searchClient}
           >
             <SearchBox />
-            <Hits />
+            <CustomHits />
             <RefinementList attribute="ext" />
           </InstantSearch>
         </Box>

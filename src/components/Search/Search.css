@@ -1,0 +1,64 @@
+.ais-SearchBox-input {
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--gestalt-colorGray150);
+    padding: 8px 16px;
+    min-height: 40px;
+    background-color: var(--gestalt-colorGray0);
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+}
+
+.ais-SearchBox-input:focus {
+    border-color: rgb(118, 118, 118);
+}
+
+.ais-SearchBox-submit, .ais-SearchBox-reset {
+    min-width: 60px;
+    box-sizing: border-box;
+    min-height: 40px;
+    cursor: pointer;
+    background-color: var(--gestalt-colorGray100);
+    padding: 8px 12px;
+    border-radius: 24px;
+    -webkit-appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: rgb(118, 118, 118);
+    border-image: initial;
+}
+
+.ais-SearchBox-submit:focus {
+    border-color: rgb(118, 118, 118);
+}
+.ais-SearchBox-reset:focus {
+    border-color: rgb(118, 118, 118);
+}
