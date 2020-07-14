@@ -38,21 +38,27 @@ const Upload = () => {
           console.log('Uploaded the file');
         });
 
+        // upload text to be indexed
+        const pushData = async (text, pageNumber) => {
+          await index.saveObject(
+            {
+              title: file.name,
+              description: text,
+              pageNumber,
+              docRef: referenceString,
+            },
+            {
+              autoGenerateObjectIDIfNotExist: true,
+            },
+          );
+        };
+
         // iterate over all pages available and extract text
         let i;
-        let text_data = [];
         for (i = 0; i < doc.getPageCount(); i++) {
-          doc.loadPageText(i, (text, i) => {
-            console.log(text, i);
-            text_data.push({
-              docRef: docRef,
-              docName: file.name,
-              pageNumber: i,
-              text: text,
-            });
-          });
+          let pageNum = i + 1;
+          doc.loadPageText(i, text => pushData(text, pageNum));
         }
-        console.log(JSON.stringify(text_data));
       }
     };
   }, []);
