@@ -40,12 +40,15 @@ const Upload = () => {
 
         // upload text to be indexed
         const pushData = async (text, pageNumber) => {
+          const re = /(?:\.([^.]+))?$/;
+          const ext = re.exec(file.name);
           await index.saveObject(
             {
               title: file.name,
-              description: text,
+              pageText: text,
               pageNumber,
               docRef: referenceString,
+              extension: ext[1]
             },
             {
               autoGenerateObjectIDIfNotExist: true,
