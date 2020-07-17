@@ -26,6 +26,10 @@
     border-color: rgb(118, 118, 118);
 }
 
+.ais-Highlight-highlighted {
+    background-color: #0074e8b0;
+}
+
 .ais-SearchBox-submit, .ais-SearchBox-reset {
     min-width: 60px;
     box-sizing: border-box;

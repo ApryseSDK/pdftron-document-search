@@ -6,9 +6,10 @@ import {
   SearchBox,
   connectHits,
   RefinementList,
+  Highlight
 } from 'react-instantsearch-dom';
 import { navigate } from '@reach/router';
-import { Box, Container, Button, Heading, Table, Text } from 'gestalt';
+import { Box, Container, Button, Heading, Table, Text, Image } from 'gestalt';
 import { setDocToView } from '../View/ViewSlice';
 import 'gestalt/dist/gestalt.css';
 import './Search.css';
@@ -23,7 +24,7 @@ const Search = () => {
   );
 
   const setDoc = (docRef, pageNumber) => {
-    dispatch(setDocToView({docRef, searchTerm, pageNumber}));
+    dispatch(setDocToView({ docRef, searchTerm, pageNumber }));
     console.log(docRef, pageNumber, searchTerm);
   };
 
@@ -31,10 +32,10 @@ const Search = () => {
     return (
       <Table.Row key={hit.objectID}>
         <Table.Cell>
-          <Text>{hit.title}</Text>
+          <Text><Highlight hit={hit} attribute="title" /></Text>
         </Table.Cell>
         <Table.Cell>
-          <Text>{hit.pageText}</Text>
+          <Text><Highlight hit={hit} attribute="pageText" /></Text>
         </Table.Cell>
         <Table.Cell>
           <Button
@@ -86,6 +87,7 @@ const Search = () => {
             }}
           >
             <SearchBox />
+            <Box padding={1}><img src="search-by-algolia.png" alt="algolia.com" width="84" height="12"></img></Box>
             <CustomHits />
             <RefinementList attribute="ext" />
           </InstantSearch>
