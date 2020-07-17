@@ -7,6 +7,7 @@ import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import Search from './components/Search/Search';
 import Upload from './components/Upload/Upload';
+import View from './components/View/View';
 import Navigate from './components/Navigate/Navigate';
 import PasswordReset from './components/PasswordReset/PasswordReset';
 
@@ -36,6 +37,7 @@ const App = () => {
       <Profile path="/profile"/>
       <Search path="/search"/>
       <Upload path="/upload"/>
+      <View path="/view"/>
     </Router>
   ) : (
     <Router>

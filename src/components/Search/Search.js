@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch,
@@ -8,18 +9,21 @@ import {
 } from 'react-instantsearch-dom';
 import { navigate } from '@reach/router';
 import { Box, Container, Button, Heading, Table, Text } from 'gestalt';
+import { setDocToView } from '../View/ViewSlice';
 import 'gestalt/dist/gestalt.css';
 import './Search.css';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useDispatch();
 
   const searchClient = algoliasearch(
     process.env.REACT_APP_ALGOLIA_APP_ID,
     process.env.REACT_APP_ALGOLIA_SEARCH_KEY,
   );
 
-  const setDocToView = (docRef, pageNumber) => {
+  const setDoc = (docRef, pageNumber) => {
+    dispatch(setDocToView({docRef, searchTerm, pageNumber}));
     console.log(docRef, pageNumber, searchTerm);
   };
 
@@ -35,7 +39,7 @@ const Search = () => {
         <Table.Cell>
           <Button
             onClick={event => {
-              setDocToView(hit.docRef, hit.pageNumber);
+              setDoc(hit.docRef, hit.pageNumber);
               navigate(`/view`);
             }}
             text="View"

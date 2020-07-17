@@ -27,7 +27,7 @@ const Upload = () => {
       if (file) {
         // load up PDFTron SDK without the WebViewer
         const CoreControls = window.CoreControls;
-        CoreControls.setWorkerPath('/webviewer');
+        CoreControls.setWorkerPath('/webviewer/core');
         const doc = await CoreControls.createDocument(file);
 
         // upload document to Firebase Storage
