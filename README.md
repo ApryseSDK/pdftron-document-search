@@ -2,7 +2,7 @@
 
 PDFTron Document Search demonstrates building an application where users can search across multiple documents using [PDFTron PDF SDK](https://www.pdftron.com) for text extraction and viewing of the documents, [Firebase](https://firebase.google.com/) for storage and [Algolia](https://www.algolia.com/) for searching.
 
-[!Screenshot](https://github.com/PDFTron/pdftron-document-search/blob/master/search.png)
+![Screenshot](https://github.com/PDFTron/pdftron-document-search/blob/master/search.png)
 
 This repo is designed to help to get started in creating your own document searching workflow.
 
