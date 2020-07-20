@@ -21,7 +21,7 @@ This application uses Algolia to search documents. However, be aware that Algoli
 
 To get started with this sample, please register a new app with [Algolia](https://www.algolia.com/users/sign_up).
 
-Create a new index:
+Create a new index called `document_search`:
 ![Screenshot](https://github.com/PDFTron/pdftron-document-search/blob/master/algolia2.png)
 
 After you configured your app, create `.env` file in the root of the directory and place the following:
