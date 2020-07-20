@@ -40,6 +40,9 @@ The above information can be found under API Keys in your Algolia Dashboard.
 This application uses Firebase to store documents. You can use any other backend of your choice. 
 However, to get started with this sample, please register a new app with [Firebase](https://firebase.google.com/).
 
+Make sure you create a storage bucket, and enable authentication for email and Google.
+![Screenshot](https://github.com/PDFTron/pdftron-sign-app/blob/master/firebase_authentication.png)
+
 After you have registered an app, create `.env` file in the root of the directory and place the following:
 
 ```
@@ -53,9 +56,6 @@ REACT_APP_STORAGE_BUCKET=your_storage_bucket
 ```
 The above information can be found under settings of your Firebase app.
 ![Screenshot](https://github.com/PDFTron/pdftron-sign-app/blob/master/firebase.png)
-
-Make sure you create a storage bucket, and enable authentication for email and Google.
-![Screenshot](https://github.com/PDFTron/pdftron-sign-app/blob/master/firebase_authentication.png)
 
 Now you can run the application and start uploading your documents.
 
