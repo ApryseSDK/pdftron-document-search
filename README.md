@@ -35,8 +35,6 @@ REACT_APP_ALGOLIA_INDEX_NAME=document_search
 The above information can be found under API Keys in your Algolia Dashboard.
 ![Screenshot](https://github.com/PDFTron/pdftron-document-search/blob/master/algolia.png)
 
-Now you can run the application and start uploading your documents.
-
 ## Firebase Configuration
 
 This application uses Firebase to store documents. You can use any other backend of your choice. 
