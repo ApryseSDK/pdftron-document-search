@@ -5,6 +5,8 @@ PDFTron Document Search demonstrates building an application where users can sea
 - [Firebase](https://firebase.google.com/) for storage
 - [Algolia](https://www.algolia.com/) for searching
 
+Watch [a quick video](https://youtu.be/IQATnzHTp7Q) that walks you throught the app.
+
 ![Screenshot](https://github.com/PDFTron/pdftron-document-search/blob/master/search.png)
 
 This repo is designed to help to get started in creating your own document searching workflow.
