@@ -5,7 +5,7 @@ PDFTron Document Search demonstrates building an application where users can sea
 - [Firebase](https://firebase.google.com/) for storage
 - [Algolia](https://www.algolia.com/) for searching
 
-Watch [a quick video](https://youtu.be/IQATnzHTp7Q) that walks you throught the app.
+Watch [a quick video](https://youtu.be/IQATnzHTp7Q) that walks you throught the app. I also put together [a blog to help you get started](https://www.pdftron.com/blog/indexed-search/search-multiple-documents-using-javascript/).
 
 ![Screenshot](https://github.com/PDFTron/pdftron-document-search/blob/master/search.png)
 
