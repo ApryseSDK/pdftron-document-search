@@ -20,42 +20,24 @@ const ViewDocument = () => {
     WebViewer(
       {
         path: 'webviewer',
-        disabledElements: [
-          'toolsButton',
-          'searchButton',
-          'menuButton',
-          'contextMenuPopup',
-          'freeHandToolGroupButton',
-          'textToolGroupButton',
-          'shapeToolGroupButton',
-          'signatureToolButton',
-          'eraserToolButton',
-          'stickyToolButton',
-          'freeTextToolButton',
-          'miscToolGroupButton',
-        ],
       },
-      viewer.current,
-    ).then(async instance => {
+      viewer.current
+    ).then(async (instance) => {
       setInstance(instance);
-
-      const { docViewer } = instance;
-
-      console.log('WebViewer');
+      const { documentViewer, Search } = instance.Core;
 
       // load document
       const storageRef = storage.ref();
       const URL = await storageRef.child(docRef).getDownloadURL();
-      console.log(URL);
       instance.docViewer.loadDocument(URL);
 
       // perform search
-      docViewer.on('documentLoaded', () => {
+      documentViewer.addEventListener('documentLoaded', () => {
         if (searchTerm) {
-            const mode = docViewer.SearchMode.e_page_stop | docViewer.SearchMode.e_highlight;
-            docViewer.textSearchInit(searchTerm, mode);
+          const mode = Search.Mode.PAGE_STOP | Search.Mode.HIGHLIGHT;
+          documentViewer.textSearchInit(searchTerm, mode);
         } else if (pageNumber) {
-            docViewer.setCurrentPage(pageNumber);
+          documentViewer.setCurrentPage(pageNumber);
         }
       });
     });
@@ -71,10 +53,10 @@ const ViewDocument = () => {
 
   return (
     <div className={'prepareDocument'}>
-      <Box display="flex" direction="row" flex="grow">
+      <Box display='flex' direction='row' flex='grow'>
         <Column span={2}>
           <Box padding={3}>
-            <Heading size="md">View Document</Heading>
+            <Heading size='md'>View Document</Heading>
           </Box>
           <Box padding={3}>
             <Row gap={1}>
@@ -82,17 +64,17 @@ const ViewDocument = () => {
                 <Box padding={2}>
                   <Button
                     onClick={download}
-                    accessibilityLabel="download signed document"
-                    text="Download"
-                    iconEnd="download"
+                    accessibilityLabel='download signed document'
+                    text='Download'
+                    iconEnd='download'
                   />
                 </Box>
                 <Box padding={2}>
                   <Button
                     onClick={doneViewing}
-                    accessibilityLabel="complete signing"
-                    text="Done viewing"
-                    iconEnd="check"
+                    accessibilityLabel='complete signing'
+                    text='Done viewing'
+                    iconEnd='check'
                   />
                 </Box>
               </Stack>
@@ -100,7 +82,7 @@ const ViewDocument = () => {
           </Box>
         </Column>
         <Column span={10}>
-          <div className="webviewer" ref={viewer}></div>
+          <div className='webviewer' ref={viewer}></div>
         </Column>
       </Box>
     </div>
