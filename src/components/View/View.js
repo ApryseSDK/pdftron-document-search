@@ -29,7 +29,7 @@ const ViewDocument = () => {
       // load document
       const storageRef = storage.ref();
       const URL = await storageRef.child(docRef).getDownloadURL();
-      instance.docViewer.loadDocument(URL);
+      documentViewer.loadDocument(URL);
 
       // perform search
       documentViewer.addEventListener('documentLoaded', () => {
@@ -41,10 +41,10 @@ const ViewDocument = () => {
         }
       });
     });
-  }, []);
+  }, [docRef, pageNumber, searchTerm]);
 
   const download = () => {
-    instance.downloadPdf(true);
+    instance.UI.downloadPdf(true);
   };
 
   const doneViewing = async () => {
