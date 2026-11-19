@@ -1,5 +1,8 @@
 # PDFTron Document Search
 
+> [!NOTE]
+> Treat `pdftron-document-search` architecture example for multi-document search: read it for the design, but do not build on its code without a full dependency upgrade. Use [webviewer-server-side-search](https://github.com/ApryseSDK/webviewer-samples/tree/main/webviewer-server-side-search) as the maintained, working reference.
+
 PDFTron Document Search demonstrates building an application where users can search across multiple documents using:
 - [PDFTron PDF SDK](https://www.pdftron.com) for text extraction and viewing of the documents
 - [Firebase](https://firebase.google.com/) for storage
